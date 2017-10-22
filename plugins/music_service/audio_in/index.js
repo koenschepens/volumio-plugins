@@ -123,6 +123,7 @@ ControllerAudioIn.prototype.onStart = function() {
 
 ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 	var self = this;
+	self.commandRouter.pushConsoleMessage(curUri);
 
 	self.commandRouter.logger.info(curUri);
     self.logger.info('handleBrowseUri: "' + curUri + '"');
