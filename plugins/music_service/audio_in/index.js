@@ -117,7 +117,6 @@ ControllerAudioIn.prototype.onStart = function() {
     var self = this;
 
     self.addToBrowseSources();
-    self.initialiseService();
 
     return libQ.resolve();
 };
