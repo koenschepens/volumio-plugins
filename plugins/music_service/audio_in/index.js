@@ -114,24 +114,12 @@ ControllerAudioIn.prototype.onStop = function() {
 };
 
 ControllerAudioIn.prototype.onStart = function() {
-	var self = this;
+    var self = this;
 
-	var defer=libQ.defer();
+    self.addToBrowseSources();
+    self.initialiseService();
 
-	self.startAudioInDaemon()
-		.then(function(e)
-		{
-			setTimeout(function () {
-				self.logger.info("Connecting to daemon");
-			}, 5000);
-		})
-		.fail(function(e)
-		{
-			defer.reject(new Error());
-		});
-	this.commandRouter.sharedVars.registerCallback('alsa.outputdevice', this.rebuildAudioInDAndRestartDaemon.bind(this));
-
-	return defer.promise;
+    return libQ.resolve();
 };
 
 ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
@@ -152,7 +140,7 @@ ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 							"items": [
 								{
 									service: 'AudioIn',
-									type: 'audioin-input',
+									type: 'song',
 									title: 'FM',
 									artist: '',
 									album: '',
