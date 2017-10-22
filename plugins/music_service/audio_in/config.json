@@ -1,7 +1,7 @@
 {
   "enabled": {
     "type": "boolean",
-    "value": false
+    "value": true
   },
   "audiodevice": {
       "type": "string",
