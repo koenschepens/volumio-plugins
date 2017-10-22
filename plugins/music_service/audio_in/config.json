@@ -1,0 +1,10 @@
+{
+  "enabled": {
+    "type": "boolean",
+    "value": false
+  },
+  "audiodevice": {
+      "type": "string",
+      "value": "plughw:1,0"
+  }
+}
