@@ -125,7 +125,7 @@ ControllerAudioIn.prototype.onStart = function() {
 ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 	var self = this;
 
-	//self.commandRouter.logger.info(curUri);
+	self.commandRouter.logger.info(curUri);
 	var response;
 
 	if (curUri.startsWith('audioin')) {
