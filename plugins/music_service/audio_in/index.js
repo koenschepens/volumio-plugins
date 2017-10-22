@@ -127,8 +127,6 @@ ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 	self.commandRouter.logger.info(curUri);
 	var response;
 
-	if (curUri.startsWith('audioin')) {
-		if (curUri == 'audioin') {
 			response = libQ.resolve({
 				navigation: {
 					lists: [
@@ -154,8 +152,6 @@ ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 					}
 				}
 			});
-		}
-	}
 
 	return response;
 };
