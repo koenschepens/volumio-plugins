@@ -1,5 +1,10 @@
 {"name":"audioin","version":"1.0","description":"Audio in plugin for Volumio2",
   "scripts":{"test":"echo \"Error: no test specified\" && exit 1"},
   "main":"index.js","author":"","license":"ISC","volumio_info":{"prettyName":"Audio input","icon":"fa-audio","plugin_type":"music_service"},
-  "dependencies":  {}
+  "dependencies": {
+    "fs-extra": "^0.28.0",
+    "kew": "^0.7.0",
+    "net": "^1.0.2",
+    "v-conf": "^0.10.0"
+  }
 }
