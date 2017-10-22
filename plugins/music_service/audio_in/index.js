@@ -9,7 +9,7 @@ var exec = require('child_process').exec;
 var SpotifyWebApi = require('spotify-web-api-node');
 var nodetools = require('nodetools');
 
-module.exports = AudioIn;
+module.exports = ControllerAudioIn;
 function ControllerAudioIn(context) {
 	// This fixed variable will let us refer to 'this' object at deeper scopes
 	var self = this;
@@ -21,7 +21,40 @@ function ControllerAudioIn(context) {
 
 }
 
+ControllerAudioIn.prototype.explodeUri = function (uri) {
+    var self = this;
 
+    self.commandRouter.pushConsoleMessage('[' + Date.now() + '] ' + 'ControllerQobuz::explodeUri start uri: ' + uri);
+
+    var exploder;
+    var uriParts = uri.split('/');
+
+    if (uri.startsWith('audioin/start')) {
+        var trackId = uriParts.pop();
+
+        self.logger.qobuzDebug('explodeUri track id: ' + trackId);
+
+        exploder = self.service.track.bind(self, trackId);
+    }
+    else {
+        self.logger.info('[' + Date.now() + '] ' + 'ControllerQobuz::explodeUri no uri pattern matched');
+    }
+
+    return exploder()
+        .fail(function (e) {
+            self.logger.info('[' + Date.now() + '] ' + 'ControllerQobuz::explodeUri failed');
+            libQ.reject(new Error());
+        });
+};
+
+
+ControllerAudioIn.prototype.search = function (query) {
+    var self = this;
+
+    self.commandRouter.pushConsoleMessage('[' + Date.now() + '] ' + 'ControllerAudioIn::search start query');
+
+    return libQ.resolve([]);
+};
 
 ControllerAudioIn.prototype.onVolumioStart = function()
 {
@@ -92,7 +125,6 @@ ControllerAudioIn.prototype.onStart = function() {
 		{
 			setTimeout(function () {
 				self.logger.info("Connecting to daemon");
-				self.AudioInDaemonConnect(defer);
 			}, 5000);
 		})
 		.fail(function(e)
