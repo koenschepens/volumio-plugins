@@ -8,6 +8,7 @@ var exec = require('child_process').exec;
 var nodetools = require('nodetools');
 
 module.exports = ControllerAudioIn;
+
 function ControllerAudioIn(context) {
 	// This fixed variable will let us refer to 'this' object at deeper scopes
 	var self = this;
@@ -16,7 +17,6 @@ function ControllerAudioIn(context) {
 	this.commandRouter = this.context.coreCommand;
 	this.logger = this.context.logger;
 	this.configManager = this.context.configManager;
-
 }
 
 ControllerAudioIn.prototype.explodeUri = function (uri) {
@@ -125,6 +125,7 @@ ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 	var self = this;
 
 	self.commandRouter.logger.info(curUri);
+    self.logger.info('handleBrowseUri: "' + curUri + '"');
 	var response;
 
 			response = libQ.resolve({
