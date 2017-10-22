@@ -152,76 +152,21 @@ ControllerAudioIn.prototype.handleBrowseUri = function (curUri) {
 							"items": [
 								{
 									service: 'AudioIn',
-									type: 'spotify-category',
-									title: 'My Playlists',
+									type: 'audioin-input',
+									title: 'FM',
 									artist: '',
 									album: '',
 									icon: 'fa fa-folder-open-o',
-									uri: 'spotify/playlists'
-								},
-								{
-									service: 'AudioIn',
-									type: 'spotify-category',
-									title: 'Featured Playlists',
-									artist: '',
-									album: '',
-									icon: 'fa fa-folder-open-o',
-									uri: 'spotify/featuredplaylists'
-								},
-								{
-									service: 'AudioIn',
-									type: 'spotify-category',
-									title: 'What\'s New',
-									artist: '',
-									album: '',
-									icon: 'fa fa-folder-open-o',
-									uri: 'spotify/new'
-								},
-								{
-									service: 'AudioIn',
-									type: 'spotify-category',
-									title: 'Genres & Moods',
-									artist: '',
-									album: '',
-									icon: 'fa fa-folder-open-o',
-									uri: 'spotify/categories'
+									uri: '/tmp/audioin'
 								}
 							]
 						}
 					],
 					"prev": {
-						uri: 'spotify'
+						uri: 'audioin'
 					}
 				}
 			});
-		}
-		else if (curUri.startsWith('spotify/playlists')) {
-			if (curUri == 'spotify/playlists')
-				response = self.listPlaylists();
-			else {
-				response = self.listPlaylist(curUri);
-			}
-		}
-		else if (curUri.startsWith('spotify/featuredplaylists')) {
-			response = self.featuredPlaylists(curUri);
-		}
-		else if (curUri.startsWith('spotify:user:')) {
-			response = self.listWebPlaylist(curUri);
-		}
-		else if (curUri.startsWith('spotify/new')) {
-			response = self.listWebNew(curUri);
-		}
-		else if (curUri.startsWith('spotify/categories')) {
-			response = self.listWebCategories(curUri);
-		}
-		else if (curUri.startsWith('spotify:album')) {
-			response = self.listWebAlbum(curUri);
-		}
-		else if (curUri.startsWith('spotify/category')) {
-			response = self.listWebCategory(curUri);
-		}
-		else if (curUri.startsWith('spotify:artist:')) {
-			response = self.listWebArtist(curUri);
 		}
 	}
 
